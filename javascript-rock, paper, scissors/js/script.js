@@ -4,14 +4,17 @@ let playerScores = document.getElementById("player-scores");
 let computerScores = document.getElementById("comp-scores");
 playerScores.innerText = 0;
 computerScores.innerText = 0;
-document.getElementById("button-rock").addEventListener("click", function () {setPlayerMove("kamień")});
-document.getElementById("button-paper").addEventListener("click", function () {setPlayerMove("papier")});
-document.getElementById("button-scissors").addEventListener("click", function () {setPlayerMove("nożyce")});
+document.getElementById("button-rock").addEventListener("click", function () {setPlayerMove("rock")});
+document.getElementById("button-paper").addEventListener("click", function () {setPlayerMove("paper")});
+document.getElementById("button-scissors").addEventListener("click", function () {setPlayerMove("scissors")});
+
+$(document).ready(function() { setInterval(updateBgcolorDynamically, 200);});
 
 function printMessage(message) {
-    let div = document.createElement('div');
-    div.innerHTML = message;
-    document.getElementById('messages').appendChild(div);
+    let h2 = document.createElement('h2');
+    h2.classList.add("manual");
+    h2.innerText = message;
+    document.getElementById('messages').appendChild(h2);
 }
 
 function clearMessage() {
@@ -28,33 +31,61 @@ function setPlayerMove(move) {
 function setComputerMove() {
     let randomNumber = Math.floor(Math.random() * 3 + 1);
     if (randomNumber == 1) {
-        computerMove = "kamień";
+        computerMove = "rock";
     } else if (randomNumber == 2) {
-        computerMove = "papier";
+        computerMove = "paper";
     } else if (randomNumber == 3) {
-        computerMove = "nożyce";
+        computerMove = "scissors";
     }
 }
 
 function getResultAndAssignScore() {
+    document.getElementById("line").innerText = "";
     if (playerMove == computerMove) {
-        printMessage("Zagrałeś " + playerMove + ". Komputer zagrał " + computerMove + ".");
-        printMessage("Remis!");
-    } else if (playerMove == "kamień" && computerMove == "nożyce") {
-        printMessage("Zagrałeś kamień. Komputer zagrał nożyce.");
-        printMessage("Wygrałeś!");
+        printMessage("Player move: " + playerMove + ".");
+        printMessage("Computer move: " + computerMove + ".");
+        printMessage("Draw!_");
+    } else if (playerMove == "rock" && computerMove == "scissors") {
+        printMessage("Player move: " + playerMove + ".");
+        printMessage("Computer move: " + computerMove + ".");
+        printMessage("YOU WIN!_");
         playerScores.innerText++;
-    } else if (playerMove == "papier" && computerMove == "kamień") {
-        printMessage("Zagrałeś papier. Komputer zagrał kamień.");
-        printMessage("Wygrałeś!");
+    } else if (playerMove == "paper" && computerMove == "rock") {
+        printMessage("Player move: " + playerMove + ".");
+        printMessage("Computer move: " + computerMove + ".");
+        printMessage("YOU WIN!_");
         playerScores.innerText++;
-    } else if (playerMove == "nożyce" && computerMove == "papier") {
-        printMessage("Zagrałeś nożyce. Komputer zagrał papier.");
-        printMessage("Wygrałeś!");
+    } else if (playerMove == "scissors" && computerMove == "paper") {
+        printMessage("Player move: " + playerMove + ".");
+        printMessage("Computer move: " + computerMove + ".");
+        printMessage("YOU WIN!_");
         playerScores.innerText++;
     } else {
-        printMessage("Zagrałeś " + playerMove + ". Komputer zagrał " + computerMove + ".");
-        printMessage("Przegrałeś :(");
+        printMessage("Player move: " + playerMove + ".");
+        printMessage("Computer move: " + computerMove + ".");
+        printMessage("You lost :(_");
         computerScores.innerText++;
     }
+}
+
+let rgb1 = 0;
+let rgb2 = 0;
+let rgb3 = 0;
+
+function updateBgcolorDynamically()
+{
+    rgb1 = Math.floor(Math.random() * 250 + 1);
+    rgb2 = Math.floor(Math.random() * 250 + 1);
+    rgb3 = Math.floor(Math.random() * 250 + 1);
+    document.getElementById("dynamicDiv").style.color = "rgb(" + rgb1 + "," + rgb2 + "," + rgb3 + ")";
+
+    rgb1 = Math.floor(Math.random() * 250 + 1);
+    rgb2 = Math.floor(Math.random() * 250 + 1);
+    rgb3 = Math.floor(Math.random() * 250 + 1);
+    document.getElementById("dynamicDiv2").style.color = "rgb(" + rgb1 + "," + rgb2 + "," + rgb3 + ")";
+
+    rgb1 = Math.floor(Math.random() * 250 + 1);
+    rgb2 = Math.floor(Math.random() * 250 + 1);
+    rgb3 = Math.floor(Math.random() * 250 + 1);
+    document.getElementById("dynamicDiv3").style.color = "rgb(" + rgb1 + "," + rgb2 + "," + rgb3 + ")";
 }

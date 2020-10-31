@@ -22,7 +22,7 @@ function generateTitleLinks() {
 
     const titleLinks = document.querySelectorAll(optAllTitleLinkSelector + " a");
     for (let eachLink of titleLinks) {
-        eachLink.addEventListener("click", displayCorrectArticle);
+        eachLink.addEventListener("click",displayCorrectArticle);
     }
 
 }

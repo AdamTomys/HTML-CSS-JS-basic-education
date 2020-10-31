@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Kamień, papier, nożyce</title>
-    <link href="https://fonts.googleapis.com/css2?family=Trispace:wght@300&family=Turret+Road:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Trispace:wght@300&family=Turret+Road:wght@700&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1 class="title">Rock, Paper, Scissors !</h1>
-    <h2 class="manual">Each click on target button start's the game. In the same time, when You click the button, computer
-    will choose his move and display it to You with an information about who is the winner. In case of draw - score stays the same. Good luck !</h2>
+    <div class="title">
+        <h1 id="dynamicDiv" style="color:rgb(250,250,250); height: 170px; transition: all 0.5s;">Rock,</h1>
+        <h1 id="dynamicDiv2" style="color:rgb(250,250,250); height: 170px; transition: all 0.5s;">Paper,</h1>
+        <h1 id="dynamicDiv3" style="color:rgb(250,250,250); height: 170px; transition: all 0.5s;">Scissors</h1>
+    </div>
+    <h2 class="manual">Each click on target button start's the game.<br>In the same time computer will choose his
+        move and display result with an information about who is the winner.<br>In case of draw - score
+        stays the same.<br>Good luck !<span id="line">_</span></h2>
     <div id="buttons">
-        <button id="button-rock" class="btn">Kamień</button>
-        <button id="button-paper" class="btn">Papier</button>
-        <button id="button-scissors" class="btn">Nożyce</button>
+        <button id="button-rock" class="btn">Rock</button>
+        <button id="button-paper" class="btn">Paper</button>
+        <button id="button-scissors" class="btn">Scissors</button>
     </div>
     <div id="messages" class="message-box"></div>
     <div class="scores">
@@ -30,3 +36,5 @@
 <script src="js/script.js"></script>
 </body>
 </html>
+
+
