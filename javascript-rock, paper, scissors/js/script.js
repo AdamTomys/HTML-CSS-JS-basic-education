@@ -1,59 +1,60 @@
-document.getElementById("button-rock").addEventListener("click", function () { setPlayerMove("kamień") });
-document.getElementById("button-paper").addEventListener("click", function () { setPlayerMove("papier") });
-document.getElementById("button-scissors").addEventListener("click", function () { setPlayerMove("nożyce") });
-let playerScore = document.getElementById("player-scores");
-let computerScore = document.getElementById("comp-scores");
+let playerMove;
+let computerMove;
+let playerScores = document.getElementById("player-scores");
+let computerScores = document.getElementById("comp-scores");
+playerScores.innerText = 0;
+computerScores.innerText = 0;
+document.getElementById("button-rock").addEventListener("click", function () {setPlayerMove("kamień")});
+document.getElementById("button-paper").addEventListener("click", function () {setPlayerMove("papier")});
+document.getElementById("button-scissors").addEventListener("click", function () {setPlayerMove("nożyce")});
 
-function printMessage(msg){
+function printMessage(message) {
     let div = document.createElement('div');
-    div.innerHTML = msg;
+    div.innerHTML = message;
     document.getElementById('messages').appendChild(div);
 }
 
-function clearMessages(){
-    document.getElementById('messages').innerHTML = '';
+function clearMessage() {
+    document.getElementById("messages").innerText = "";
 }
 
-function getComputerMove() {
-    let randomNumber;
-    randomNumber = Math.floor(Math.random() * 3 + 1);
+function setPlayerMove(move) {
+    playerMove = move;
+    clearMessage();
+    setComputerMove();
+    getResultAndAssignScore();
+}
+
+function setComputerMove() {
+    let randomNumber = Math.floor(Math.random() * 3 + 1);
     if (randomNumber == 1) {
         computerMove = "kamień";
-        return printMessage("Ruch komputera: " + computerMove);
     } else if (randomNumber == 2) {
         computerMove = "papier";
-        return printMessage("Ruch komputera: " + computerMove);
-    } else {
+    } else if (randomNumber == 3) {
         computerMove = "nożyce";
-        return printMessage("Ruch komputera: " + computerMove);
     }
 }
 
-function setPlayerMove(buttonName) {
-    clearMessages();
-    playerMove = buttonName;
-    printMessage("Twój ruch: " + playerMove);
-    getComputerMove();
-    displayResult();
-}
-
-function displayResult() {
-    if (computerMove == "kamień" && playerMove == "papier") {
-        printMessage("Wygrałeś !");
-        playerScore.innerText++;
-    } else if (computerMove == "papier" && playerMove == "nożyce") {
-        printMessage("Wygrałeś !");
-        playerScore.innerText++;
-    } else if (computerMove == "nożyce" && playerMove == "kamień") {
-        printMessage("Wygrałeś !");
-        playerScore.innerText++;
-    } else if (computerMove == playerMove) {
-        printMessage("Remis !");
-    } else if (playerMove == null) {
-        printMessage("Wybierz ponownie swój ruch");
+function getResultAndAssignScore() {
+    if (playerMove == computerMove) {
+        printMessage("Zagrałeś " + playerMove + ". Komputer zagrał " + computerMove + ".");
+        printMessage("Remis!");
+    } else if (playerMove == "kamień" && computerMove == "nożyce") {
+        printMessage("Zagrałeś kamień. Komputer zagrał nożyce.");
+        printMessage("Wygrałeś!");
+        playerScores.innerText++;
+    } else if (playerMove == "papier" && computerMove == "kamień") {
+        printMessage("Zagrałeś papier. Komputer zagrał kamień.");
+        printMessage("Wygrałeś!");
+        playerScores.innerText++;
+    } else if (playerMove == "nożyce" && computerMove == "papier") {
+        printMessage("Zagrałeś nożyce. Komputer zagrał papier.");
+        printMessage("Wygrałeś!");
+        playerScores.innerText++;
     } else {
+        printMessage("Zagrałeś " + playerMove + ". Komputer zagrał " + computerMove + ".");
         printMessage("Przegrałeś :(");
-        computerScore.innerText++;
+        computerScores.innerText++;
     }
 }
-
