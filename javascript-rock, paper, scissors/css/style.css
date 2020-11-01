@@ -1,6 +1,5 @@
 .container {
-  max-width: 1140px;
-  height: 900px;
+  max-width: 1280px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -24,6 +23,7 @@ body {
   -ms-flex-pack: center;
       justify-content: center;
   width: 100%;
+  min-height: 200px;
 }
 
 h1 {
@@ -57,7 +57,7 @@ h2 {
   font-size: 20px;
   text-align: left;
   line-height: 2;
-  padding: 0 100px;
+  padding: 0 50px;
   font-weight: 500;
   margin: 0;
 }
@@ -68,7 +68,7 @@ h2 {
   line-height: 2;
   font-weight: 500;
   margin: 0;
-  padding: 0 100px;
+  padding: 0 50px;
 }
 
 .info {
@@ -81,6 +81,14 @@ h2 {
 
 #buttons {
   margin: 20px 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding: 0 50px;
+  width: 100%;
 }
 
 .btn {
@@ -93,11 +101,12 @@ h2 {
   font-size: 50px;
   cursor: pointer;
   font-family: "Turret Road", cursive;
+  margin: 10px;
 }
 
 .message-box {
   width: 100%;
-  height: 130px;
+  min-height: 130px;
   font-size: 30px;
 }
 
@@ -109,6 +118,7 @@ h2 {
   font-family: "Trispace", sans-serif;
   color: #23b80e;
   text-align: center;
+  margin: 40px 0;
 }
 
 .player,
@@ -130,5 +140,33 @@ h2 {
   display: flex;
   -ms-flex-align: center;
       align-items: center;
+}
+
+/* Media */
+@media (max-width: 967px) {
+  .btn {
+    height: 70px;
+    min-width: 180px;
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 550px) {
+  .title {
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-align: center;
+        align-items: center;
+  }
+  #dynamicDiv {
+    margin-top: 20px;
+  }
+  #dynamicDiv3 {
+    margin-bottom: 20px;
+  }
+  #buttons {
+    -ms-flex-direction: column;
+        flex-direction: column;
+  }
 }
 /*# sourceMappingURL=style.css.map */

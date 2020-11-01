@@ -3,8 +3,7 @@ $message-font: 'Trispace', sans-serif;
 $theme-font: 'Turret Road', cursive;
 
 .container {
-  max-width: 1140px;
-  height: 900px;
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +22,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
+  min-height: 200px;
 }
 
 h1 {
@@ -53,7 +53,7 @@ h2 {
   font-size: 20px;
   text-align: left;
   line-height: 2;
-  padding: 0 100px;
+  padding: 0 50px;
   font-weight: 500;
   margin: 0;
 }
@@ -64,7 +64,7 @@ h2 {
   line-height: 2;
   font-weight: 500;
   margin: 0;
-  padding: 0 100px;
+  padding: 0 50px;
 }
 
 .info {
@@ -75,6 +75,11 @@ h2 {
 
 #buttons {
   margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 50px;
+  width: 100%;
 }
 
 .btn {
@@ -87,11 +92,12 @@ h2 {
   font-size: 50px;
   cursor: pointer;
   font-family: $theme-font;
+  margin: 10px;
 }
 
 .message-box {
   width: 100%;
-  height: 130px;
+  min-height: 130px;
   font-size: 30px;
 }
 
@@ -101,6 +107,7 @@ h2 {
   font-family: $message-font;
   color: $font-main-color;
   text-align: center;
+  margin: 40px 0;
 }
 
 .player,
@@ -119,4 +126,37 @@ h2 {
   justify-content: center;
   display: flex;
   align-items: center;
+}
+
+/* Media */
+
+@media (max-width: 967px) {
+
+  .btn {
+    height: 70px;
+    min-width: 180px;
+    font-size: 38px;
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  .title {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #dynamicDiv {
+    margin-top: 20px;
+  }
+
+  #dynamicDiv3 {
+    margin-bottom: 20px;
+  }
+
+  #buttons {
+    flex-direction: column;
+  }
+
 }

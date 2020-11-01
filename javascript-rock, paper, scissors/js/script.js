@@ -10,7 +10,7 @@ document.getElementById("button-paper").addEventListener("click", function () {s
 document.getElementById("button-scissors").addEventListener("click", function () {setPlayerMove("scissors")});
 
 $(document).ready(function () {
-    setInterval(updateBgcolorDynamically, 200);
+    setInterval(updateTitleColorDynamically, 200);
     setInterval(blindingCursor, 400);
 });
 
@@ -76,7 +76,7 @@ function getResultAndAssignScore() {
     }
 }
 
-function updateBgcolorDynamically() {
+function updateTitleColorDynamically() {
     let rgb1 = Math.floor(Math.random() * 250 + 1);
     let rgb2 = Math.floor(Math.random() * 250 + 1);
     let rgb3 = Math.floor(Math.random() * 250 + 1);
