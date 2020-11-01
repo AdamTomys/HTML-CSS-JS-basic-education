@@ -8,7 +8,12 @@ document.getElementById("button-rock").addEventListener("click", function () {se
 document.getElementById("button-paper").addEventListener("click", function () {setPlayerMove("paper")});
 document.getElementById("button-scissors").addEventListener("click", function () {setPlayerMove("scissors")});
 
-$(document).ready(function() { setInterval(updateBgcolorDynamically, 200);});
+$(document).ready(function ()
+{
+    setInterval(updateBgcolorDynamically, 200);
+    setInterval(blindingCursor, 400);
+}
+);
 
 function printMessage(message) {
     let h2 = document.createElement('h2');
@@ -40,30 +45,34 @@ function setComputerMove() {
 }
 
 function getResultAndAssignScore() {
-    document.getElementById("line").innerText = "";
+
+    document.getElementById("manual-cursor").classList.remove("cursor");
+    document.getElementById("manual-cursor").style.color = "#23b80e";
+    document.getElementById("message-cursor").classList.add("cursor");
+
     if (playerMove == computerMove) {
         printMessage("Player move: " + playerMove + ".");
         printMessage("Computer move: " + computerMove + ".");
-        printMessage("Draw!_");
+        printMessage("Draw!");
     } else if (playerMove == "rock" && computerMove == "scissors") {
         printMessage("Player move: " + playerMove + ".");
         printMessage("Computer move: " + computerMove + ".");
-        printMessage("YOU WIN!_");
+        printMessage("YOU WIN!");
         playerScores.innerText++;
     } else if (playerMove == "paper" && computerMove == "rock") {
         printMessage("Player move: " + playerMove + ".");
         printMessage("Computer move: " + computerMove + ".");
-        printMessage("YOU WIN!_");
+        printMessage("YOU WIN!");
         playerScores.innerText++;
     } else if (playerMove == "scissors" && computerMove == "paper") {
         printMessage("Player move: " + playerMove + ".");
         printMessage("Computer move: " + computerMove + ".");
-        printMessage("YOU WIN!_");
+        printMessage("YOU WIN!");
         playerScores.innerText++;
     } else {
         printMessage("Player move: " + playerMove + ".");
         printMessage("Computer move: " + computerMove + ".");
-        printMessage("You lost :(_");
+        printMessage("You lost :(");
         computerScores.innerText++;
     }
 }
@@ -72,8 +81,7 @@ let rgb1 = 0;
 let rgb2 = 0;
 let rgb3 = 0;
 
-function updateBgcolorDynamically()
-{
+function updateBgcolorDynamically() {
     rgb1 = Math.floor(Math.random() * 250 + 1);
     rgb2 = Math.floor(Math.random() * 250 + 1);
     rgb3 = Math.floor(Math.random() * 250 + 1);
@@ -88,4 +96,18 @@ function updateBgcolorDynamically()
     rgb2 = Math.floor(Math.random() * 250 + 1);
     rgb3 = Math.floor(Math.random() * 250 + 1);
     document.getElementById("dynamicDiv3").style.color = "rgb(" + rgb1 + "," + rgb2 + "," + rgb3 + ")";
+}
+
+function blindingCursor() {
+
+    let i = document.querySelectorAll(".cursor");
+    for (let eachIcon of i) {
+        if (eachIcon.style.color == "white") {
+            eachIcon.style.color = "black";
+            return;
+        }
+        if (eachIcon.style.color == "black") {
+            eachIcon.style.color = "white";
+        }
+    }
 }

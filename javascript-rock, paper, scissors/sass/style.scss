@@ -1,4 +1,6 @@
 $font-main-color: #23b80e;
+$message-font: 'Trispace', sans-serif;
+$theme-font: 'Turret Road', cursive;
 
 .container {
   max-width: 1140px;
@@ -24,7 +26,7 @@ body {
 }
 
 .container h1 {
-  font-family: 'Turret Road', cursive;
+  font-family: $theme-font;
   font-size: 50px;
   text-align: center;
   margin: 0;
@@ -45,12 +47,8 @@ body {
   width: 220px;
 }
 
-#line {
-  color: white;
-}
-
 h2 {
-  font-family: 'Trispace', sans-serif;
+  font-family: $message-font;
   color: $font-main-color;
   font-size: 20px;
   text-align: left;
@@ -60,8 +58,23 @@ h2 {
   margin: 0;
 }
 
+.info i {
+  font-size: 20px;
+  text-align: left;
+  line-height: 2;
+  font-weight: 500;
+  margin: 0;
+  padding: 0 100px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 #buttons {
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .btn {
@@ -73,7 +86,7 @@ h2 {
   background: inherit;
   font-size: 50px;
   cursor: pointer;
-  font-family: 'Trispace', sans-serif;
+  font-family: $theme-font;
 }
 
 .message-box {
@@ -86,6 +99,9 @@ h2 {
 .scores {
   display: flex;
   align-items: center;
+  font-family: $message-font;
+  color: $font-main-color;
+  text-align: center;
 }
 
 .player,
@@ -93,21 +109,15 @@ h2 {
 .comp {
   font-size: 50px;
   padding: 20px;
-  color: $font-main-color;
 }
 
 .player,
 .comp {
   border: 1px solid $font-main-color;
-  height: 60px;
-  width: 26px;
-}
-
-.score-description {
+  height: 40px;
+  width: 45px;
+  font-family: $message-font;
+  justify-content: center;
   display: flex;
-}
-
-.score-description p {
-  padding: 0 30px;
-  color: $font-main-color;
+  align-items: center;
 }
