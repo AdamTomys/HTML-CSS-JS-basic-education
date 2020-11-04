@@ -34,6 +34,7 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
+
   span {
     text-transform: none;
     font-weight: 400;
@@ -82,6 +83,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
   .active {
     font-weight: bold;
   }
@@ -114,6 +116,7 @@ article {
   opacity: 0;
   transition: all 0.5s;
   width: 400px;
+
   &.active {
     opacity: 1;
     position: relative;
@@ -126,6 +129,7 @@ article {
 
 .post-tags {
   display: flex;
+
   p {
     margin: 0 10px 0 0;
   }
