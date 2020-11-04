@@ -109,6 +109,7 @@ article {
 .post.active {
   opacity: 1;
   position: relative;
+  z-index: 1;
 }
 
 .post-author {
