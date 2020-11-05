@@ -1,15 +1,17 @@
 'use strict';
 
-function generateTitleLinks(customSelector = '') {
+const optAllTitleLinkSelector = '.titles',
+  optPostTitleSelector = '.post-title',
+  optArticleSelector = 'article',
+  optArticleTagsSelector = '.post-tags .list',
+  optTagsListSelector = '.tags.list';
 
-  const optAllTitleLinkSelector = '.titles',
-    optPostTitleSelector = '.post-title',
-    optEachArticleSelector = 'article';
+function generateTitleLinks(customSelector = '') {
 
   let titleList = document.querySelector(optAllTitleLinkSelector);
   let HTMLCompleteContent = '';
 
-  const articles = document.querySelectorAll(optEachArticleSelector + customSelector);
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
   for (let eachArticle of articles) {
     const eachArticleId = eachArticle.getAttribute('id');
     const eachArticleTitle = eachArticle.querySelector(optPostTitleSelector).innerHTML;
@@ -44,10 +46,23 @@ function displayCorrectArticle(event) {
   addClickListenersToTags();
 }
 
-const optArticleSelector = 'article',
-  optArticleTagsSelector = '.post-tags .list';
+function calculateTagsParams(tags) {
+  const result = {};
+  const tagsParams = [];
+  for(let eachTag in tags) {
+    tagsParams.push(tags[eachTag]);
+  }
+  const min = Math.min(...tagsParams);
+  const max = Math.max(...tagsParams);
+  result['min'] = min;
+  result['max'] = max;
+  console.log(result);
+  return result;
+}
 
 function generateTags() {
+  /* Create a new variable with an empty object */
+  let allTags = {};
   /* find all articles */
   let articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -64,12 +79,34 @@ function generateTags() {
       const htmlInner = '<li><a href="#tag-' + eachTag + '">' + eachTag + '</a></li> ';
       /* add generated code to html variable */
       currentArticleTagsHtml = currentArticleTagsHtml + htmlInner;
+      /* check if this link is not already in allTags */
+      // eslint-disable-next-line no-prototype-builtins
+      if(!allTags.hasOwnProperty(eachTag)) {
+        /* add tag to allTags object */
+        allTags[eachTag] = 1;
+      } else {
+        allTags[eachTag]++;
+      }
       /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     currentTagWrapper.innerHTML = currentArticleTagsHtml;
     /* END LOOP: for every article: */
   }
+  /*find list of tags in right column */
+  const tagList = document.querySelector(optTagsListSelector);
+  /* create variable for all links HTML code */
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams: ', tagsParams);
+  let allTagsHTML = '';
+  /* START LOOP: for each tag in allTags */
+  for(let eachTag in allTags) {
+    /* generate code of a link and add it to allTagsHTML */
+    allTagsHTML += '<li><a href="#tag-' + eachTag + '">' + eachTag + '</a></li> ' + '(' + allTags[eachTag] + ') ';
+    /* END LOOP */
+  }
+  /* add html from allTagsHTML to tagList */
+  tagList.innerHTML = allTagsHTML;
 }
 
 generateTags();
@@ -78,13 +115,13 @@ function generateAuthors() {
   let articles = document.querySelectorAll(optArticleSelector);
   for (let eachArticle of articles) {
     /* find author wrapper */
-      let currentAuthorWrapper = eachArticle.querySelector('.post-author');
-      /* get authors from data-authors attribute and split tags into array */
-      let dataAuthor = eachArticle.getAttribute('data-author');
-      /* generate HTML of the link */
-      const authorHTML = '<a href="#author-' + dataAuthor + '">' + dataAuthor + '</a>';
-      currentAuthorWrapper.innerHTML = authorHTML;
-    }
+    let currentAuthorWrapper = eachArticle.querySelector('.post-author');
+    /* get authors from data-authors attribute and split tags into array */
+    let dataAuthor = eachArticle.getAttribute('data-author');
+    /* generate HTML of the link */
+    const authorHTML = '<a href="#author-' + dataAuthor + '">' + dataAuthor + '</a>';
+    currentAuthorWrapper.innerHTML = authorHTML;
+  }
 }
 
 generateAuthors();
@@ -115,7 +152,7 @@ function tagClickHandler(event) {
       /* END LOOP: for each found tag link */
     }
   }
-/* execute function "generateTitleLinks" with article selector as argument */
+  /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-tags~="' + tag + '"]');
 }
 

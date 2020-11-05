@@ -34,6 +34,7 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
+
   span {
     text-transform: none;
     font-weight: 400;
@@ -129,6 +130,7 @@ article {
 
 .post-tags {
   display: flex;
+  
   p {
     margin: 0 10px 0 0;
   }
