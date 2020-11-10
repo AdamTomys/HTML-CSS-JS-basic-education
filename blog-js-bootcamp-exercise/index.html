@@ -78,7 +78,7 @@
                         </ul>
                     </div>
                 </article>
-                <article class="post" id="article-5" data-tags="design reviews" data-author="Marion Berry">
+                <article class="post" id="article-5" data-tags="design reviews crm" data-author="Marion Berry">
                     <h3 class="post-title">Article 5</h3>
                     <p class="post-author"></p>
                     <div class="post-content">
@@ -94,7 +94,7 @@
                         </ul>
                     </div>
                 </article>
-                <article class="post" id="article-6" data-tags="reviews code management" data-author="George Tuxedo">
+                <article class="post" id="article-6" data-tags="reviews code management web" data-author="George Tuxedo">
                     <h3 class="post-title">Article 6</h3>
                     <p class="post-author"></p>
                     <div class="post-content">
@@ -179,32 +179,31 @@
                 <h2 class="section-title">Tags</h2>
                 <ul class="list tags"></ul>
                 <h2 class="section-title">Authors</h2>
-                <ul class="list authors">
-                    <!-- <li>
-                        <a href="#">
-                            <span class="author-name">Kitty Toebean</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="author-name">Theo Tabby</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="author-name">George Tuxedo</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="author-name">Marion Berry</span>
-                        </a>
-                    </li> -->
-                </ul>
+                <ul class="list authors"></ul>
             </aside>
         </main>
     </div>
 </div>
+<script id="template-article-link" type="text/x-handlebars-template">
+    <li><a href="#{{ id }}">{{ title }}</a></li>
+  </script>
+  <script id="template-tag-link" type="text/x-handlebars-template">
+    <li><a href="#tag-{{ id }}">{{ tag }}</a></li>
+  </script>
+  <script id="template-author-link" type="text/x-handlebars-template">
+    <li><a href="#author-{{ id }}">{{ authorName }}</a></li>
+  </script>
+  <script id="template-tagCloud-link" type="text/x-handlebars-template">
+    {{#each tags}}
+  <li><a href="#tag-{{ tag }}" class="{{tagSizeClass}}">{{ tag }}</a></li>
+  {{/each}}
+  </script>
+  <script id="template-authorsList-link" type="text/x-handlebars-template">
+    {{#each authors}}
+  <li><a href="#"><span class="author-name">{{authorName}} ({{numberOfArticles}})</span></a></li>
+  {{/each}}
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
